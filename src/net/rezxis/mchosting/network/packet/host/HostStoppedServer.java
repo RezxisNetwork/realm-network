@@ -6,7 +6,10 @@ import net.rezxis.mchosting.network.packet.ServerType;
 
 public class HostStoppedServer extends Packet {
 
-	public HostStoppedServer() {
+	public String player;
+	
+	public HostStoppedServer(String player) {
 		super(PacketType.ServerStopped, ServerType.HOST);
+		this.player = player;
 	}
 }
