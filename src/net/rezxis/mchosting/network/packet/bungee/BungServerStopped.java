@@ -6,10 +6,10 @@ import net.rezxis.mchosting.network.packet.ServerType;
 
 public class BungServerStopped extends Packet {
 
-	public int port;
+	public String name;
 	
-	public BungServerStopped(int port) {
+	public BungServerStopped(String name) {
 		super(PacketType.ServerStopped, ServerType.BUNGEE);
-		this.port = port;
+		this.name = name;
 	}
 }
