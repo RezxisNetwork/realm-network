@@ -8,6 +8,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 public class WSClient extends WebSocketClient {
 
+	
 	private ClientHandler handler;
 	public WSClient(URI serverUri, ClientHandler handler) {
 		super(serverUri);
