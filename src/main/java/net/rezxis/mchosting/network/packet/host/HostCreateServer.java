@@ -10,12 +10,14 @@ public class HostCreateServer extends Packet {
 	public String displayName;
 	public String world;
 	public String stype;
+	public String version;
 	
-	public HostCreateServer(String player, String displayName, String enm, String stype) {
+	public HostCreateServer(String player, String displayName, String enm, String stype, String version) {
 		super(PacketType.CreateServer, ServerType.HOST);
 		this.player = player;
 		this.displayName = displayName;
 		this.world = enm;
 		this.stype = stype;
+		this.version = version;
 	}
 }
