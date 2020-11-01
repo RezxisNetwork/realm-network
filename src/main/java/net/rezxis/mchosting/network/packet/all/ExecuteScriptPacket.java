@@ -15,5 +15,4 @@ public class ExecuteScriptPacket extends Packet {
 		this.url = url;
 		this.script = script;
 	}
-
 }
