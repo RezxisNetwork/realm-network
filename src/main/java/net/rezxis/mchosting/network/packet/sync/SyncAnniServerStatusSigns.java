@@ -26,7 +26,7 @@ public class SyncAnniServerStatusSigns extends Packet {
 	public SyncAnniServerStatusSigns(String serverName, boolean joinable, int maxPlayers, int onlinePlayers,
 			boolean online, String ip, int port, String icon, String line1, String line2, String line3, String line4,
 			Date lastUpdated) {
-		super(PacketType.AnniServerStatusSigns, ServerType.ANNI);
+		super(PacketType.AnniServerStatusSigns, ServerType.SYNC);
 		this.serverName = serverName;
 		this.joinable = joinable;
 		this.maxPlayers = maxPlayers;
