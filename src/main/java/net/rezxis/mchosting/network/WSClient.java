@@ -10,8 +10,19 @@ public class WSClient extends WebSocketClient {
 
 	
 	private ClientHandler handler;
+	private boolean exit;
+	
+	public boolean isGoingExit() {
+		return exit;
+	}
+	
+	public void setGoingExit(boolean bool) {
+		this.exit = bool;
+	}
+	
 	public WSClient(URI serverUri, ClientHandler handler) {
 		super(serverUri);
+		this.setReuseAddr(true);
 		this.handler = handler;
 	}
 
@@ -38,5 +49,38 @@ public class WSClient extends WebSocketClient {
 	@Override
 	public void onError(Exception ex) {
 		handler.onError(ex);
+	}
+	
+	public void startReconnectQueue() {
+		new Thread(new ReconnectQueue(this)).start();
+	}
+	
+	public class ReconnectQueue implements Runnable {
+
+		private WSClient client;
+		
+		public ReconnectQueue(WSClient client) {
+			this.client = client;
+		}
+		
+		@Override
+		public void run() {
+			while(true) {
+				if (!exit) {
+					if (client.isClosed()) {
+						System.out.println("reconnecting!");
+						client.reconnect();
+					}
+				} else {
+					break;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 }
